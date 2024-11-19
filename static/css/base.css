@@ -1,0 +1,22 @@
+
+html, body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+
+body {
+    background-image: radial-gradient(circle, #1a302b, #234742, #2b605b, #317a76, #369594, #44a6a6, #52b7b8, #60c8cb, #77d3d4, #8cdedd, #a0e9e6, #b4f4f0);
+}
+
+footer {
+    padding: 12px 0 0 0;
+    background-color: red;
+    color: yellow;
+    text-align: center;
+
+}
+
+main {
+    min-height: calc(100vh - 100px);
+}
