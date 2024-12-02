@@ -1,10 +1,14 @@
 from django.urls import path 
-from .views import home, about, contact
+from . import views
 
 urlpatterns = [
-    path('', home, name='root'),
-    path('home/', home, name='home'),
-    path('about/', about, name='about'),
-    path('contact/', contact, name='contact'),
-
+    path('', views.home, name='root'),
+    path('home/', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('login/', views.login_user, name='login'),
+    path('logout/', views.logout_user, name='logout'),
+    path('register/', views.register_user, name='register'),
+    path('contact/', views.contact, name='contact'),
+    path('products/', views.products, name='products'),
+    path('sales/', views.sales, name='sales'),
 ]

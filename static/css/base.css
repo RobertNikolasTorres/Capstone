@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    background-image: radial-gradient(circle, #1a302b, #234742, #2b605b, #317a76, #369594, #44a6a6, #52b7b8, #60c8cb, #77d3d4, #8cdedd, #a0e9e6, #b4f4f0);
+    background-image: radial-gradient(circle, #1a302b, #234742, #2b605b, #317a76, #369594, #44a6a6, #52b7b8, #60c8cb, #77d3d4, #8cdedd, #a0e9e6, #b4f4f0);    color: green;
 }
 
 footer {
@@ -20,3 +20,4 @@ footer {
 main {
     min-height: calc(100vh - 100px);
 }
+

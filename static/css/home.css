@@ -1,0 +1,24 @@
+body {
+    background-image: radial-gradient(circle, #1a302b, #234742, #2b605b, #317a76, #369594, #44a6a6, #52b7b8, #60c8cb, #77d3d4, #8cdedd, #a0e9e6, #b4f4f0);
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn:focus {
+    outline: none;
+}
