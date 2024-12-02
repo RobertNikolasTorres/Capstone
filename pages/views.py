@@ -18,6 +18,10 @@ def about(request):
 def contact(request):
     return render(request, 'pages/contact.html')
 
+def product (request,pk):
+     product = Product.objects.get(id=pk)
+     return render(request, 'pages/product.html',{'product':product})
+
 def products(request):
     products = Product.objects.all()
     return render(request, 'pages/products.html', {'products': products})
