@@ -1,34 +1,59 @@
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from django import forms 
+from django.db.models import Q
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'pages/home.html')
+    products = Product.objects.all()
+    return render(request, 'home.html', {'products': products})
 
 def about(request):
-    return render(request, 'pages/about.html')
+    return render(request, 'about.html')
 
-def contact(request):
-    return render(request, 'pages/contact.html')
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
+        if not searched:
+            messages.success(request, "That Product Doesn't Exist...")
+            return render(request, "search.html", {})
+        else:
+            return render(request, "search.html", {'searched':searched})
+    else:
+        return render(request, "search.html", {})
 
 def product (request,pk):
      product = Product.objects.get(id=pk)
-     return render(request, 'pages/product.html',{'product':product})
+     return render(request, 'product.html',{'product':product})
 
 def products(request):
     products = Product.objects.all()
-    return render(request, 'pages/products.html', {'products': products})
+    return render(request, 'products.html', {'products': products})
 
 def sales(request):
     products = Product.objects.all()
-    return render(request, 'pages/sales.html', {'products': products})
+    return render(request, 'sales.html', {'products': products})
+
+def category(request, foo):
+    #foo = foo.replace('-', ' ')
+    try:
+        category = Category.objects.get(name=foo)
+        products = Product.objects.filter(category=category)
+        return render(request, 'category.html', {'products':products, 'category':category})  
+    except:
+        messages.success(request, ("That Category Doesn't Exist..."))
+        return redirect('products')
+
+def category_summary(request):
+     categories = Category.objects.all()
+     return render(request, 'category_summary.html', {'categories':categories})
 
 def login_user(request):
         if request.method =="POST":
@@ -44,7 +69,7 @@ def login_user(request):
                 return redirect('login')
         
         else:
-            return render(request, 'pages/login.html')
+            return render(request, 'login.html')
 
 def logout_user(request):
         logout(request)
@@ -68,7 +93,7 @@ def register_user(request):
                 messages.success(request, ("whoops! There was a problem registering, please try again."))
                 return redirect('register')
         else:   
-            return render(request, 'pages/register.html', {'form': form })
+            return render(request, 'register.html', {'form': form })
 
      
 
